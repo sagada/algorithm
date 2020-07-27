@@ -1,77 +1,44 @@
-// https://www.acmicpc.net/problem/1759
-// 암호 만들기
 #include<iostream>
 #include<algorithm>
 #include<vector>
 #include<string.h>
 using namespace std;
 
-int n,m;
-int sum = 0;
-vector<char> vec;
-char arr[20];
-bool check[26];
+int n;
 
-bool isMo(char ch)
-{
-    if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
-        return true;
-    else
-        return false;
-}
+int p[20];
+int t[20];
 
-void solve(int len, char arr[], int goal, int start)
+int ret = 0;
+
+void go(int day, int sum)
 {
-    
-    if(len == goal)
+    if (day == n + 1) // 퇴사 할 수 있으면
     {
-        int mo, ja;
-        mo = ja = 0;
-        
-        for (int i = 0; i < len; i++)
-        {
-            if(isMo(arr[i]))
-                mo++;
-            else
-                ja++;
-        }
-        
-        if(mo >= 1 && ja >= 2)
-        {
-            
-            for(int i = 0; i < len; i++)
-            {
-                cout << arr[i];
-            }
-            cout << "\n";
-        }
-        
+        ret = max(ret, sum);
         return ;
     }
     
-    for (int i = start; i < vec.size(); i++)
-    {
-        if(check[vec[i] - 'a']) continue;
-        check[vec[i] - 'a'] = true;
-        arr[len] = vec[i];
-        solve(len + 1, arr, goal, i + 1);
-        check[vec[i] - 'a'] = false;
-    }
+    if(day > n + 1)
+        return;
+    
+    // 상담 안한 경우, 상담 한경우
+    go(day + 1, sum);
+    go(day + t[day], sum + p[day]);
 
 }
 
+
 int main()
 {
-    cin >> n >> m;
-    
-    for (int i = 0; i < m; i++)
+    cin >> n;
+
+    for (int i = 1; i <= n; i++)
     {
-        char temp;
-        cin >> temp;
-        vec.push_back(temp);
+        cin >> t[i] >> p[i];
     }
     
-    sort(vec.begin(), vec.end());
+    go(1, 0);
     
-    solve(0, arr, n, 0);
+    cout << ret << "\n";
 }
