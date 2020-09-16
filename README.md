@@ -5,5 +5,5 @@
 
 
 # 백준 링크 
-- Back Joon 링크 : [backjoon](https://www.acmicpc.net/user/tkdgus115)
+- 나의 백준 링크 : [backjoon](https://www.acmicpc.net/user/tkdgus115)
 
