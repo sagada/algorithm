@@ -19,7 +19,8 @@ public class Main {
 
         Map<String, Integer> wordMap = new HashMap<String, Integer>();
         
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) 
+        {
 
             String word = br.readLine();
             if (word.length() < m)
@@ -35,7 +36,8 @@ public class Main {
                 .stream()
                 .collect(Collectors.toList());
         
-        words.sort((o1, o2) -> {
+        words.sort((o1, o2) -> 
+        {
 
             int c1 = wordMap.get(o1);
             int c2 = wordMap.get(o2);
