@@ -45,7 +45,6 @@ public class Main {
                 sum += distance[cur][i];
                 dfs(i, visited, n, sum, distance);
                 sum -= distance[cur][i];
-                visited[i] = false;
             }
         }
     }
